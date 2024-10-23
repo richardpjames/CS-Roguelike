@@ -1,5 +1,4 @@
 ﻿using Raylib_cs;
-using System.Diagnostics;
 using System.Numerics;
 
 public class Game
@@ -19,10 +18,11 @@ public class Game
     }
     public Game()
     {
-        // Create a window which is 800 pixels by 600 pixels
-        Raylib.InitWindow(1920, 1080, "RogueLike Adventure");
-        // Set our target FPS
-        Raylib.SetTargetFPS(60);
+        // Create a window which is the resolution of the monitor
+        int monitor = Raylib.GetCurrentMonitor();
+        Raylib.InitWindow(Raylib.GetMonitorWidth(monitor), Raylib.GetMonitorHeight(monitor), "RogueLike Adventure");
+        // Set to full screen
+        Raylib.ToggleBorderlessWindowed();
         // Create our player - starting with the sprite
         Sprite playerSprite = new Sprite("Assets/rogues.png", new Rectangle(0, 32, 32, 32));
         // Then create the player itself at 0,0
@@ -30,7 +30,7 @@ public class Game
         // Create the world from the LDTK file
         _world = new World("Assets/World.ldtk");
         // Initialise the camera - sets the offset to center the screen, pointing at zero,zero, with no rotation but zoomed
-        _camera = new Camera2D(new Vector2((Raylib.GetScreenWidth() / 2), (Raylib.GetScreenHeight() / 2)), new Vector2(0, 0), 0, 2);
+        _camera = new Camera2D(new Vector2((Raylib.GetScreenWidth() / 2), (Raylib.GetScreenHeight() / 2)), new Vector2(0, 0), 0, 3);
     }
     // On destruction we clean up the window etc.
     ~Game()
@@ -41,7 +41,7 @@ public class Game
 
     public void Update()
     {
-        Raylib.DrawFPS(0, 0);
+
         // Get the frame time from Raylib (create our deltaTime for updates)
         float deltaTime = Raylib.GetFrameTime();
         // Update the world
@@ -60,9 +60,9 @@ public class Game
         // Clear the window with a gray background
         Raylib.ClearBackground(Color.Black);
         // Determine the camera bounds based on the target, the offset (adjusted by zoom) and the width and height (also adjusted by zoom)
-        Rectangle cameraBounds = new Rectangle((_camera.Target.X - (_camera.Offset.X / _camera.Zoom)), 
-            (_camera.Target.Y - (_camera.Offset.Y / _camera.Zoom)), 
-            (Raylib.GetScreenWidth() / _camera.Zoom), 
+        Rectangle cameraBounds = new Rectangle((_camera.Target.X - (_camera.Offset.X / _camera.Zoom)),
+            (_camera.Target.Y - (_camera.Offset.Y / _camera.Zoom)),
+            (Raylib.GetScreenWidth() / _camera.Zoom),
             (Raylib.GetScreenHeight() / _camera.Zoom));
         // Render the world
         _world.Render(cameraBounds);
