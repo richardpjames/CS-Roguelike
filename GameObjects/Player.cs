@@ -5,17 +5,36 @@ public class Player : GameObject
 {
     public Sprite Sprite { get; private set; }
     private const float SPEED = 200;
-    public Player(Vector2 position, Sprite sprite) : base(position)
+    private World? _world;
+
+    public Player(Vector2 position, Sprite sprite, World world) : base(position)
     {
         // The position is set by the base constructor - set the sprite for the player
         this.Sprite = sprite;
+        this._world = world;
     }
 
     public override void Update(float deltaTime)
     {
+        if (_world == null) return;
+        // Get the input from the player
         Vector2 inputVector = GetInputVector();
+        // If there is no input then return
+        if (inputVector == Vector2.Zero) return;
         // Update based on the input for the player (vector for direction)
-        Position += inputVector * SPEED * deltaTime;
+        Position.X += inputVector.X * SPEED * deltaTime;
+        // If so then reset the X position
+        if (_world.DetectWorldCollisions(new Rectangle(Position.X + 4, Position.Y + 1, 21, 30)))
+        {
+            Position.X -= inputVector.X * SPEED * deltaTime;
+        }
+        // Update based on the input for the player (vector for direction)
+        Position.Y += inputVector.Y * SPEED * deltaTime;
+        // If so then reset the X position
+        if (_world.DetectWorldCollisions(new Rectangle(Position.X + 4, Position.Y + 1, 21, 30)))
+        {
+            Position.Y -= inputVector.Y * SPEED * deltaTime;
+        }
     }
 
     private Vector2 GetInputVector()

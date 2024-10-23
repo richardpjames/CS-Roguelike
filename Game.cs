@@ -20,15 +20,17 @@ public class Game
     {
         // Create a window which is the resolution of the monitor
         int monitor = Raylib.GetCurrentMonitor();
-        Raylib.InitWindow(Raylib.GetMonitorWidth(monitor), Raylib.GetMonitorHeight(monitor), "RogueLike Adventure");
+        Raylib.InitWindow(1920, 1080, "RogueLike Adventure");
+        //Raylib.InitWindow(Raylib.GetMonitorWidth(monitor), Raylib.GetMonitorHeight(monitor), "RogueLike Adventure");
         // Set to full screen
-        Raylib.ToggleBorderlessWindowed();
-        // Create our player - starting with the sprite
-        Sprite playerSprite = new Sprite("Assets/rogues.png", new Rectangle(0, 32, 32, 32));
-        // Then create the player itself at 0,0
-        _player = new Player(new Vector2(192, 224), playerSprite);
+        //Raylib.ToggleBorderlessWindowed();
         // Create the world from the LDTK file
         _world = new World("Assets/World.ldtk");
+        // Create our player - starting with the sprite
+        Texture2D rogues = Raylib.LoadTexture("Assets/rogues.png");
+        Sprite playerSprite = new Sprite(rogues, new Rectangle(0, 32, 32, 32));
+        // Then create the player itself at 0,0
+        _player = new Player(new Vector2(192, 224), playerSprite, _world);
         // Initialise the camera - sets the offset to center the screen, pointing at zero,zero, with no rotation but zoomed
         _camera = new Camera2D(new Vector2((Raylib.GetScreenWidth() / 2), (Raylib.GetScreenHeight() / 2)), new Vector2(0, 0), 0, 3);
     }
@@ -41,7 +43,6 @@ public class Game
 
     public void Update()
     {
-
         // Get the frame time from Raylib (create our deltaTime for updates)
         float deltaTime = Raylib.GetFrameTime();
         // Update the world

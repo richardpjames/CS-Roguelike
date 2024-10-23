@@ -5,12 +5,12 @@ public class Sprite
 {
     private Texture2D _texture;
     private Rectangle _drawRectangle;
-    public Sprite(string fileName, Rectangle spriteSheetPosition)
+    public Sprite(Texture2D texture, Rectangle spriteSheetPosition)
     {
         // This is our rectangle for defining the sprite within the spritesheet
         _drawRectangle = spriteSheetPosition;
         // Load the specified texture from the file
-        _texture = Raylib.LoadTexture(fileName);
+        _texture = texture;
     }
 
     public void Draw(Vector2 position)
