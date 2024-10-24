@@ -1,14 +1,16 @@
 ﻿using ldtk;
 using System.Numerics;
-using System.IO;
 using Raylib_cs;
 
 public class World : GameObject
 {
     private LdtkJson _worldJson;
+
     private Texture2D _texture;
+
     // Holds tiles for rendering
     private Dictionary<Vector4, Tile> _tiles;
+
     // Holds rectangles which represent collision shapes
     private List<Rectangle> _collisions;
 
@@ -34,25 +36,28 @@ public class World : GameObject
                 // Then each tile within the layer
                 foreach (TileInstance tile in layer.GridTiles)
                 {
-                        // Where in the texture do we take the sprite from
-                        Rectangle sourceRectangle = new Rectangle(tile.Src[0], tile.Src[1], 32, 32);
-                        // Offset for the world location on each level - store the layer and depth and the third and fourth values
-                        Vector4 position = new Vector4(level.WorldX + tile.Px[0], level.WorldY + tile.Px[1], layerNumber, level.WorldDepth);
-                        // Create a sprite from the texture and the source rectangle
-                        Sprite tileSprite = new Sprite(_texture, sourceRectangle);
-                        // Create the tile with the position and sprite
-                        Tile tileObject = new Tile(position, tileSprite);
-                        // Add that tile to the list of tiles
-                        if (!_tiles.ContainsKey(position)) _tiles.Add(position, tileObject);
-                    
+                    // Where in the texture do we take the sprite from
+                    Rectangle sourceRectangle = new Rectangle(tile.Src[0], tile.Src[1], Game.PIXELS_PER_UNIT,
+                        Game.PIXELS_PER_UNIT);
+                    // Offset for the world location on each level - store the layer and depth and the third and fourth values
+                    Vector4 position = new Vector4((level.WorldX + tile.Px[0]) / Game.PIXELS_PER_UNIT,
+                        (level.WorldY + tile.Px[1]) / Game.PIXELS_PER_UNIT, layerNumber, level.WorldDepth);
+                    // Create a sprite from the texture and the source rectangle
+                    Sprite tileSprite = new Sprite(_texture, sourceRectangle);
+                    // Create the tile with the position and sprite
+                    Tile tileObject = new Tile(position, tileSprite);
+                    // Add that tile to the list of tiles
+                    if (!_tiles.ContainsKey(position)) _tiles.Add(position, tileObject);
                 }
+
                 // For each entity within the layer
                 foreach (EntityInstance entity in layer.EntityInstances)
                 {
                     // Find any colliders and add to the lits
-                    if(entity.Identifier == "Collider")
+                    if (entity.Identifier == "Collider")
                     {
-                        Rectangle collider = new Rectangle(level.WorldX + entity.Px[0], level.WorldY + entity.Px[1], entity.Width, entity.Height);
+                        Rectangle collider = new Rectangle((level.WorldX + entity.Px[0]), (level.WorldY + entity.Px[1]),
+                            entity.Width, entity.Height);
                         _collisions.Add(collider);
                     }
                 }
@@ -74,6 +79,7 @@ public class World : GameObject
                 return true;
             }
         }
+
         // We have not collided if we reach here
         return false;
     }
@@ -98,4 +104,3 @@ public class World : GameObject
         }
     }
 }
-

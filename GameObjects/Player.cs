@@ -4,7 +4,7 @@ using Raylib_cs;
 public class Player : GameObject
 {
     public Sprite Sprite { get; private set; }
-    private const float SPEED = 200;
+    private const float SPEED = 10;
     private World? _world;
 
     public Player(Vector2 position, Sprite sprite, World world) : base(position)
@@ -22,18 +22,18 @@ public class Player : GameObject
         // If there is no input then return
         if (inputVector == Vector2.Zero) return;
         // Update based on the input for the player (vector for direction)
-        Position.X += inputVector.X * SPEED * deltaTime;
+        Position.X += inputVector.X;
         // If so then reset the X position
-        if (_world.DetectWorldCollisions(new Rectangle(Position.X + 4, Position.Y + 1, 21, 30)))
+        if (_world.DetectWorldCollisions(new Rectangle((Position.X * Game.PIXELS_PER_UNIT) + 4, (Position.Y * Game.PIXELS_PER_UNIT) + 1, 21, 30)))
         {
-            Position.X -= inputVector.X * SPEED * deltaTime;
+            Position.X -= inputVector.X;
         }
         // Update based on the input for the player (vector for direction)
-        Position.Y += inputVector.Y * SPEED * deltaTime;
+        Position.Y += inputVector.Y;
         // If so then reset the X position
-        if (_world.DetectWorldCollisions(new Rectangle(Position.X + 4, Position.Y + 1, 21, 30)))
+        if (_world.DetectWorldCollisions(new Rectangle((Position.X * Game.PIXELS_PER_UNIT) + 4, (Position.Y * Game.PIXELS_PER_UNIT) + 1, 21, 30)))
         {
-            Position.Y -= inputVector.Y * SPEED * deltaTime;
+            Position.Y -= inputVector.Y;
         }
     }
 
@@ -42,22 +42,22 @@ public class Player : GameObject
         // Initialise the vector
         Vector2 direction = new Vector2(0, 0);
         // Up movement
-        if (Raylib.IsKeyDown(KeyboardKey.W) || Raylib.IsKeyDown(KeyboardKey.Up))
+        if (Raylib.IsKeyReleased(KeyboardKey.W) || Raylib.IsKeyReleased(KeyboardKey.Up))
         {
             direction.Y -= 1;
         }
         // Left movement
-        if (Raylib.IsKeyDown(KeyboardKey.A) || Raylib.IsKeyDown(KeyboardKey.Left))
+        else if (Raylib.IsKeyReleased(KeyboardKey.A) || Raylib.IsKeyReleased(KeyboardKey.Left))
         {
             direction.X -= 1;
         }
         // Down movement
-        if (Raylib.IsKeyDown(KeyboardKey.S) || Raylib.IsKeyDown(KeyboardKey.Down))
+        else if (Raylib.IsKeyReleased(KeyboardKey.S) || Raylib.IsKeyReleased(KeyboardKey.Down))
         {
             direction.Y += 1;
         }
         // Right movement
-        if (Raylib.IsKeyDown(KeyboardKey.D) || Raylib.IsKeyDown(KeyboardKey.Right))
+        else if (Raylib.IsKeyReleased(KeyboardKey.D) || Raylib.IsKeyReleased(KeyboardKey.Right))
         {
             direction.X += 1;
         }

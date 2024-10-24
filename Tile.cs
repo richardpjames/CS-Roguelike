@@ -10,7 +10,7 @@ public class Tile
     public Tile(Vector4 position, Sprite? sprite)
     {
         Position = position;
-        BoundingBox = new Rectangle((int)position.X, (int)position.Y, 32, 32);
+        BoundingBox = new Rectangle((int)position.X, (int)position.Y, Game.PIXELS_PER_UNIT, Game.PIXELS_PER_UNIT);
         Sprite = sprite;
     }
 

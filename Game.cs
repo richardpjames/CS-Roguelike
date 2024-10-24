@@ -3,6 +3,11 @@ using System.Numerics;
 
 public class Game
 {
+    // Constants for across the project
+    public const int PIXELS_PER_UNIT = 32;
+    public const int SCREEN_WIDTH = 1920;   
+    public const int SCREEN_HEIGHT = 1080;
+    
     private Player _player;
     private World _world;
     private Camera2D _camera;
@@ -20,7 +25,7 @@ public class Game
     {
         // Create a window which is the resolution of the monitor
         int monitor = Raylib.GetCurrentMonitor();
-        Raylib.InitWindow(1920, 1080, "RogueLike Adventure");
+        Raylib.InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "RogueLike Adventure");
         //Raylib.InitWindow(Raylib.GetMonitorWidth(monitor), Raylib.GetMonitorHeight(monitor), "RogueLike Adventure");
         // Set to full screen
         //Raylib.ToggleBorderlessWindowed();
@@ -28,9 +33,9 @@ public class Game
         _world = new World("Assets/World.ldtk");
         // Create our player - starting with the sprite
         Texture2D rogues = Raylib.LoadTexture("Assets/rogues.png");
-        Sprite playerSprite = new Sprite(rogues, new Rectangle(0, 32, 32, 32));
+        Sprite playerSprite = new Sprite(rogues, new Rectangle(0, 32, PIXELS_PER_UNIT, PIXELS_PER_UNIT));
         // Then create the player itself at 0,0
-        _player = new Player(new Vector2(192, 224), playerSprite, _world);
+        _player = new Player(new Vector2(6, 7), playerSprite, _world);
         // Initialise the camera - sets the offset to center the screen, pointing at zero,zero, with no rotation but zoomed
         _camera = new Camera2D(new Vector2((Raylib.GetScreenWidth() / 2), (Raylib.GetScreenHeight() / 2)), new Vector2(0, 0), 0, 3);
     }
@@ -50,7 +55,7 @@ public class Game
         // Update the player
         _player.Update(deltaTime);
         // Update the camera to follow the player
-        _camera.Target = _player.Position;
+        _camera.Target = _player.Position * Game.PIXELS_PER_UNIT;
     }
 
     public void Render()
@@ -61,10 +66,10 @@ public class Game
         // Clear the window with a gray background
         Raylib.ClearBackground(Color.Black);
         // Determine the camera bounds based on the target, the offset (adjusted by zoom) and the width and height (also adjusted by zoom)
-        Rectangle cameraBounds = new Rectangle((_camera.Target.X - (_camera.Offset.X / _camera.Zoom)),
-            (_camera.Target.Y - (_camera.Offset.Y / _camera.Zoom)),
-            (Raylib.GetScreenWidth() / _camera.Zoom),
-            (Raylib.GetScreenHeight() / _camera.Zoom));
+        Rectangle cameraBounds = new Rectangle((_camera.Target.X - (_camera.Offset.X / _camera.Zoom)) / Game.PIXELS_PER_UNIT,
+            (_camera.Target.Y - (_camera.Offset.Y / _camera.Zoom)) / Game.PIXELS_PER_UNIT,
+            (Raylib.GetScreenWidth() / _camera.Zoom) / Game.PIXELS_PER_UNIT,
+            (Raylib.GetScreenHeight() / _camera.Zoom) / Game.PIXELS_PER_UNIT);
         // Render the world
         _world.Render(cameraBounds);
         // Render the player object
