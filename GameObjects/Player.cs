@@ -57,7 +57,7 @@ public class Player : GameObject
     {
         if (_world == null) return;
         // Check for interaction events
-        if (Raylib.IsKeyReleased(KeyboardKey.E))
+        if (Raylib.IsKeyDown(KeyboardKey.E))
         {
             int newDepth = _world.ChangeLevel(Position, currentDepth);
             if (newDepth != currentDepth)
@@ -125,22 +125,22 @@ public class Player : GameObject
         // Initialise the vector
         Vector2 direction = new Vector2(0, 0);
         // Up movement
-        if (Raylib.IsKeyReleased(KeyboardKey.W) || Raylib.IsKeyReleased(KeyboardKey.Up))
+        if (Raylib.IsKeyDown(KeyboardKey.W) || Raylib.IsKeyDown(KeyboardKey.Up))
         {
             direction.Y -= 1;
         }
         // Left movement
-        else if (Raylib.IsKeyReleased(KeyboardKey.A) || Raylib.IsKeyReleased(KeyboardKey.Left))
+        else if (Raylib.IsKeyDown(KeyboardKey.A) || Raylib.IsKeyDown(KeyboardKey.Left))
         {
             direction.X -= 1;
         }
         // Down movement
-        else if (Raylib.IsKeyReleased(KeyboardKey.S) || Raylib.IsKeyReleased(KeyboardKey.Down))
+        else if (Raylib.IsKeyDown(KeyboardKey.S) || Raylib.IsKeyDown(KeyboardKey.Down))
         {
             direction.Y += 1;
         }
         // Right movement
-        else if (Raylib.IsKeyReleased(KeyboardKey.D) || Raylib.IsKeyReleased(KeyboardKey.Right))
+        else if (Raylib.IsKeyDown(KeyboardKey.D) || Raylib.IsKeyDown(KeyboardKey.Right))
         {
             direction.X += 1;
         }
