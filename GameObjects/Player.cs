@@ -81,7 +81,7 @@ public class Player : GameObject
             if (_monsterManager != null && monster != null)
             {
                 // Take damage
-                monster.TakeDamage(1);
+                bool monsterKilled = monster.TakeDamage(1);
                 targetPosition = Position + inputVector;
                 Raylib.PlaySound(_attack);
                 // Force the monster to take damage
@@ -90,9 +90,11 @@ public class Player : GameObject
                 // This will move the player to their new position and back again over xx seconds with 0 delay
                 if (_movementTween != null)
                 {
+
                     _movementTween.Tween(this, new { X = targetPosition.X, Y = targetPosition.Y }, 0.15f, 0)
                         .Ease(Ease.CubeInOut)
-                        .Repeat(1)
+                        // If the monster is killed then don't repeat - otherwise repeat once
+                        .Repeat(monsterKilled ? 0 : 1)
                         .Reflect()
                         // On completion we need to confirm to the game that the player has moved
                         .OnComplete(() => { OnPlayerMoved?.Invoke(); });

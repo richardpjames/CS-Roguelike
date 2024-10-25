@@ -35,14 +35,18 @@ public class Monster : GameObject
         return;
     }
 
-    public void TakeDamage(float damage)
+    public bool TakeDamage(float damage)
     {
         // First remove the damage from the health
         _health -= damage;
         // If we fall below zero health then remove from the game
         if(_health <=0 && _monsterManager != null)
         {
+            // If the monster is killed then remove
             _monsterManager.RemoveMonster(this);
+            return true;
         }
+        // Return false when the monster is not killed
+        return false;
     }
 }
