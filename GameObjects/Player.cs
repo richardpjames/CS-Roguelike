@@ -5,11 +5,12 @@ using Unglide;
 public class Player : GameObject
 {
     public Sprite Sprite { get; private set; }
-    private const float SPEED = 10;
     private World? _world;
+    private MonsterManager? _monsterManager;
     private int currentDepth = 0;
     // Must ensure that the audio is initialised before loading sounds!
     private Sound _footsteps;
+    private Sound _attack;
     private Sound _stairs;
     private Vector2 targetPosition;
     // Actions to signal back to the game
@@ -22,13 +23,15 @@ public class Player : GameObject
     public float Y { get { return Position.Y; } set { Position.Y = value; } }
 
 
-    public Player(Vector2 position, Sprite sprite, World world) : base(position)
+    public Player(Vector2 position, Sprite sprite, World world, MonsterManager monsterManager) : base(position)
     {
         // The position is set by the base constructor - set the sprite for the player
-        this.Sprite = sprite;
-        this._world = world;
+        Sprite = sprite;
+        _world = world;
+        _monsterManager = monsterManager;
         // Load the required sounds
         _footsteps = Raylib.LoadSound("Assets/sound/16_human_walk_stone_1.wav");
+        _attack = Raylib.LoadSound("Assets/sound/07_human_atk_sword_1.wav");
         _stairs = Raylib.LoadSound("Assets/sound/05_door_open_1.mp3");
         _movementTween = new Tweener();
     }
@@ -36,6 +39,7 @@ public class Player : GameObject
     ~Player()
     {
         // Unload sounds when the player is destroyed
+        Raylib.UnloadSound(_attack);
         Raylib.UnloadSound(_footsteps);
         Raylib.UnloadSound(_stairs);
     }
@@ -72,8 +76,30 @@ public class Player : GameObject
             Vector2 inputVector = GetInputVector();
             // If there is no input then return
             if (inputVector == Vector2.Zero) return;
-            // Check for collisions in the new location
-            if (!_world.CheckCollision(Position + inputVector, currentDepth))
+            // First check for monsters and attack if present
+            Monster? monster = _monsterManager?.GetMonster(Position + inputVector, currentDepth);
+            if (_monsterManager != null && monster != null)
+            {
+                // Take damage
+                monster.TakeDamage(1);
+                targetPosition = Position + inputVector;
+                Raylib.PlaySound(_attack);
+                // Force the monster to take damage
+                // Let the game know that we have processed the input - this will cause update to run
+                OnInputProcessed?.Invoke();
+                // This will move the player to their new position and back again over xx seconds with 0 delay
+                if (_movementTween != null)
+                {
+                    _movementTween.Tween(this, new { X = targetPosition.X, Y = targetPosition.Y }, 0.15f, 0)
+                        .Ease(Ease.CubeInOut)
+                        .Repeat(1)
+                        .Reflect()
+                        // On completion we need to confirm to the game that the player has moved
+                        .OnComplete(() => { OnPlayerMoved?.Invoke(); });
+                }
+            }
+            // If no monsters then check for collisions in the new location
+            else if (!_world.CheckCollision(Position + inputVector, currentDepth))
             {
                 // TODO - Check for enemies and provoke an attack
                 targetPosition = Position + inputVector;
@@ -88,7 +114,6 @@ public class Player : GameObject
                         // On completion we need to confirm to the game that the player has moved
                         .OnComplete(() => { OnPlayerMoved?.Invoke(); });
                 }
-                // On attacking - add a repeat(1) and reflect() call to the above
             }
         }
     }

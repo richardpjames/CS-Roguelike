@@ -12,6 +12,7 @@ public class Game
     private World _world;
     private Camera2D _camera;
     private Music _music;
+    private MonsterManager _monsterManager;
 
     public enum GameState { GET_PLAYER_INPUT, MOVE_PLAYER }
     public GameState CurrentGameState { get; private set; }
@@ -41,13 +42,15 @@ public class Game
         // Load the file and play as a music stream
         _music = Raylib.LoadMusicStream("Assets/music/regular.mp3");
         Raylib.PlayMusicStream(_music);
+        // Initialise the game monsters
+        _monsterManager = new MonsterManager();
         // Create the world from the LDTK file
-        _world = new World("Assets/World.ldtk");
+        _world = new World("Assets/World.ldtk", _monsterManager);
         // Create our player - starting with the sprite
         Texture2D rogues = Raylib.LoadTexture("Assets/rogues.png");
         Sprite playerSprite = new Sprite(rogues, new Rectangle(0, 1, 1, 1).GridToWorld());
         // Then create the player itself at 0,0
-        _player = new Player(new Vector2(6, 7), playerSprite, _world);
+        _player = new Player(new Vector2(6, 7), playerSprite, _world, _monsterManager);
         // Set up some of the callback actions
         _player.OnInputProcessed += () => { CurrentGameState = GameState.MOVE_PLAYER; };
         _player.OnPlayerMoved += () => { CurrentGameState = GameState.GET_PLAYER_INPUT; };
@@ -81,7 +84,7 @@ public class Game
             // Update the player
             _player.ProcessInput();
         }
-        if(CurrentGameState == GameState.MOVE_PLAYER)
+        if (CurrentGameState == GameState.MOVE_PLAYER)
         {
             // Process the player updates (moving, attacking etc.)
             _player.Update(deltaTime);
@@ -130,6 +133,8 @@ public class Game
         Raylib.DrawRectangleRec(cameraBounds, Color.Black);
         // Render the world
         _world.Render(cameraBounds);
+        // Render any monsters
+        _monsterManager.Render(cameraBounds);
         // Render the player object
         _player.Render(cameraBounds);
         // End the camera and drawing modes
