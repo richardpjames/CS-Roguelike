@@ -13,6 +13,9 @@ public class Game
     private Camera2D _camera;
     private Music _music;
 
+    public enum GameState { GET_PLAYER_INPUT, MOVE_PLAYER }
+    public GameState CurrentGameState { get; private set; }
+
     // Determine whether the game is running
     public bool Running
     {
@@ -45,8 +48,13 @@ public class Game
         Sprite playerSprite = new Sprite(rogues, new Rectangle(0, 1, 1, 1).GridToWorld());
         // Then create the player itself at 0,0
         _player = new Player(new Vector2(6, 7), playerSprite, _world);
+        // Set up some of the callback actions
+        _player.OnInputProcessed += () => { CurrentGameState = GameState.MOVE_PLAYER; };
+        _player.OnPlayerMoved += () => { CurrentGameState = GameState.GET_PLAYER_INPUT; };
         // Initialise the camera - sets the offset to center the screen, pointing at zero,zero, with no rotation but zoomed
         _camera = new Camera2D(new Vector2((Raylib.GetScreenWidth() / 2), (Raylib.GetScreenHeight() / 2)), new Vector2(0, 0), 0, 3);
+        // Set the initial game state to allow the player to move
+        CurrentGameState = GameState.GET_PLAYER_INPUT;
 
     }
     // On destruction we clean up the window etc.
@@ -68,8 +76,16 @@ public class Game
         float deltaTime = Raylib.GetFrameTime();
         // Update the world
         _world.Update(deltaTime);
-        // Update the player
-        _player.Update(deltaTime);
+        if (CurrentGameState == GameState.GET_PLAYER_INPUT)
+        {
+            // Update the player
+            _player.ProcessInput();
+        }
+        if(CurrentGameState == GameState.MOVE_PLAYER)
+        {
+            // Process the player updates (moving, attacking etc.)
+            _player.Update(deltaTime);
+        }
         // Update the camera to follow the player
         _camera.Target = _player.Position.GridToWorld();
         // Handle input for zooming the camera
