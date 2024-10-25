@@ -633,8 +633,8 @@
 							"defUid": 16,
 							"px": [128,64],
 							"fieldInstances": [
-								{ "__identifier": "SpriteXPos", "__type": "Int", "__value": 0, "__tile": null, "defUid": 17, "realEditorValues": [] },
-								{ "__identifier": "SpriteYPos", "__type": "Int", "__value": 0, "__tile": null, "defUid": 18, "realEditorValues": [] },
+								{ "__identifier": "SpriteXPos", "__type": "Int", "__value": 0, "__tile": null, "defUid": 17, "realEditorValues": [{ "id": "V_Int", "params": [0] }] },
+								{ "__identifier": "SpriteYPos", "__type": "Int", "__value": 2, "__tile": null, "defUid": 18, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
 								{ "__identifier": "Strength", "__type": "Float", "__value": 1, "__tile": null, "defUid": 19, "realEditorValues": [{ "id": "V_Float", "params": [1] }] },
 								{ "__identifier": "Health", "__type": "Int", "__value": 2, "__tile": null, "defUid": 20, "realEditorValues": [{ "id": "V_Int", "params": [2] }] }
 							],
@@ -654,8 +654,8 @@
 							"defUid": 16,
 							"px": [224,64],
 							"fieldInstances": [
-								{ "__identifier": "SpriteXPos", "__type": "Int", "__value": 0, "__tile": null, "defUid": 17, "realEditorValues": [] },
-								{ "__identifier": "SpriteYPos", "__type": "Int", "__value": 1, "__tile": null, "defUid": 18, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
+								{ "__identifier": "SpriteXPos", "__type": "Int", "__value": 1, "__tile": null, "defUid": 17, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
+								{ "__identifier": "SpriteYPos", "__type": "Int", "__value": 2, "__tile": null, "defUid": 18, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
 								{ "__identifier": "Strength", "__type": "Float", "__value": 2, "__tile": null, "defUid": 19, "realEditorValues": [{ "id": "V_Float", "params": [2] }] },
 								{ "__identifier": "Health", "__type": "Int", "__value": 5, "__tile": null, "defUid": 20, "realEditorValues": [{ "id": "V_Int", "params": [5] }] }
 							],

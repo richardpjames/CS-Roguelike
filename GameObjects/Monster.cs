@@ -9,6 +9,7 @@ public class Monster : GameObject
     private MonsterManager _monsterManager;
     private float _health;
     private float _strength;
+    private Sound _deathSound;
 
     public Monster(Vector2 position, Sprite sprite, World world, int currentDepth, MonsterManager monsterManager, float strength, float health) : base(position)
     {
@@ -24,7 +25,15 @@ public class Monster : GameObject
         _monsterManager = monsterManager;
         // Add to the monster manager
         _monsterManager.AddMonster(this);
+        // Load the sound
+        _deathSound = Raylib.LoadSound("Assets/sound/21_orc_damage_1.wav");
     }
+    // On destruction, remove the death sound
+    ~Monster()
+    {
+        Raylib.UnloadSound(_deathSound);
+    }
+
     public override void Render(Rectangle cameraBounds)
     {
         // Draw the sprite at our monster position
@@ -44,6 +53,7 @@ public class Monster : GameObject
         {
             // If the monster is killed then remove
             _monsterManager.RemoveMonster(this);
+            Raylib.PlaySound(_deathSound);
             return true;
         }
         // Return false when the monster is not killed
