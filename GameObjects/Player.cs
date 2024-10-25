@@ -57,7 +57,7 @@ public class Player : GameObject
     {
         if (_world == null) return;
         // Check for interaction events
-        if (Raylib.IsKeyDown(KeyboardKey.E))
+        if (Raylib.IsKeyReleased(KeyboardKey.E))
         {
             int newDepth = _world.ChangeLevel(Position, currentDepth);
             if (newDepth != currentDepth)
