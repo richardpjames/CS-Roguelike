@@ -11,6 +11,8 @@ public class Game
     private Player _player;
     private World _world;
     private Camera2D _camera;
+    private Music _music;
+
     // Determine whether the game is running
     public bool Running
     {
@@ -31,6 +33,11 @@ public class Game
         //Raylib.InitWindow(Raylib.GetMonitorWidth(monitor), Raylib.GetMonitorHeight(monitor), "RogueLike Adventure");
         // Set to full screen
         //Raylib.ToggleBorderlessWindowed();
+        // Load and play music
+        Raylib.InitAudioDevice();
+        // Load the file and play as a music stream
+        _music = Raylib.LoadMusicStream("Assets/music/regular.mp3");
+        Raylib.PlayMusicStream(_music);
         // Create the world from the LDTK file
         _world = new World("Assets/World.ldtk");
         // Create our player - starting with the sprite
@@ -45,12 +52,18 @@ public class Game
     // On destruction we clean up the window etc.
     ~Game()
     {
+        // Unload the music stream
+        Raylib.UnloadMusicStream(_music);
+        // Close the audio device
+        Raylib.CloseAudioDevice();
         // Close the window and OpenGL context
         Raylib.CloseWindow();
     }
 
     public void Update()
     {
+        // Update the music stream
+        Raylib.UpdateMusicStream(_music);
         // Get the frame time from Raylib (create our deltaTime for updates)
         float deltaTime = Raylib.GetFrameTime();
         // Update the world
@@ -71,7 +84,7 @@ public class Game
             // Page up zooms out
             if (_camera.Zoom < 5)
             {
-                _camera.Zoom++;
+                _camera.Zoom *= 2;
             }
         }
         else if (Raylib.IsKeyReleased(KeyboardKey.PageDown))
@@ -79,7 +92,7 @@ public class Game
             // Page down zooms in
             if (_camera.Zoom > 1)
             {
-                _camera.Zoom--;
+                _camera.Zoom /= 2;
             }
         }
     }

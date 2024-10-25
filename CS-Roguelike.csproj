@@ -14,7 +14,71 @@
     <None Remove="Assets\icon.png" />
     <None Remove="Assets\items.png" />
     <None Remove="Assets\monsters.png" />
+    <None Remove="Assets\music\battle.mp3" />
+    <None Remove="Assets\music\regular.mp3" />
     <None Remove="Assets\rogues.png" />
+    <None Remove="Assets\sound\01_chest_open_1.wav" />
+    <None Remove="Assets\sound\01_chest_open_2.wav" />
+    <None Remove="Assets\sound\01_chest_open_3.wav" />
+    <None Remove="Assets\sound\01_chest_open_4.wav" />
+    <None Remove="Assets\sound\02_chest_close_1.wav" />
+    <None Remove="Assets\sound\02_chest_close_2.wav" />
+    <None Remove="Assets\sound\02_chest_close_3.wav" />
+    <None Remove="Assets\sound\03_crate_open_1.wav" />
+    <None Remove="Assets\sound\03_crate_open_2.wav" />
+    <None Remove="Assets\sound\03_crate_open_3.wav" />
+    <None Remove="Assets\sound\04_sack_open_1.wav" />
+    <None Remove="Assets\sound\04_sack_open_2.wav" />
+    <None Remove="Assets\sound\04_sack_open_3.wav" />
+    <None Remove="Assets\sound\05_door_open_1.mp3" />
+    <None Remove="Assets\sound\05_door_open_2.mp3" />
+    <None Remove="Assets\sound\06_door_close_1.mp3" />
+    <None Remove="Assets\sound\06_door_close_2.mp3" />
+    <None Remove="Assets\sound\07_human_atk_sword_1.wav" />
+    <None Remove="Assets\sound\07_human_atk_sword_2.wav" />
+    <None Remove="Assets\sound\07_human_atk_sword_3.wav" />
+    <None Remove="Assets\sound\08_human_charge_1.wav" />
+    <None Remove="Assets\sound\08_human_charge_2.wav" />
+    <None Remove="Assets\sound\09_human_charging_1_loop.wav" />
+    <None Remove="Assets\sound\09_human_charging_2_loop.wav" />
+    <None Remove="Assets\sound\10_human_special_atk_1.wav" />
+    <None Remove="Assets\sound\10_human_special_atk_2.wav" />
+    <None Remove="Assets\sound\11_human_damage_1.wav" />
+    <None Remove="Assets\sound\11_human_damage_2.wav" />
+    <None Remove="Assets\sound\11_human_damage_3.wav" />
+    <None Remove="Assets\sound\12_human_jump_1.wav" />
+    <None Remove="Assets\sound\12_human_jump_2.wav" />
+    <None Remove="Assets\sound\12_human_jump_3.wav" />
+    <None Remove="Assets\sound\13_human_jump_land_1.wav" />
+    <None Remove="Assets\sound\13_human_jump_land_2.wav" />
+    <None Remove="Assets\sound\14_human_death_spin.wav" />
+    <None Remove="Assets\sound\15_human_dash_1.wav" />
+    <None Remove="Assets\sound\15_human_dash_2.wav" />
+    <None Remove="Assets\sound\16_human_walk_stone_1.wav" />
+    <None Remove="Assets\sound\16_human_walk_stone_2.wav" />
+    <None Remove="Assets\sound\16_human_walk_stone_3.wav" />
+    <None Remove="Assets\sound\17_orc_atk_sword_1.wav" />
+    <None Remove="Assets\sound\17_orc_atk_sword_2.wav" />
+    <None Remove="Assets\sound\17_orc_atk_sword_3.wav" />
+    <None Remove="Assets\sound\18_orc_charge.wav" />
+    <None Remove="Assets\sound\19_orc_charging_loop.wav" />
+    <None Remove="Assets\sound\20_orc_special_atk.wav" />
+    <None Remove="Assets\sound\21_orc_damage_1.wav" />
+    <None Remove="Assets\sound\21_orc_damage_2.wav" />
+    <None Remove="Assets\sound\21_orc_damage_3.wav" />
+    <None Remove="Assets\sound\22_orc_jump_1.wav" />
+    <None Remove="Assets\sound\22_orc_jump_2.wav" />
+    <None Remove="Assets\sound\23_orc_jump_land.wav" />
+    <None Remove="Assets\sound\24_orc_death_spin.wav" />
+    <None Remove="Assets\sound\25_orc_walk_stone_1.wav" />
+    <None Remove="Assets\sound\25_orc_walk_stone_2.wav" />
+    <None Remove="Assets\sound\25_orc_walk_stone_3.wav" />
+    <None Remove="Assets\sound\26_sword_hit_1.wav" />
+    <None Remove="Assets\sound\26_sword_hit_2.wav" />
+    <None Remove="Assets\sound\26_sword_hit_3.wav" />
+    <None Remove="Assets\sound\27_sword_miss_1.wav" />
+    <None Remove="Assets\sound\27_sword_miss_2.wav" />
+    <None Remove="Assets\sound\27_sword_miss_3.wav" />
     <None Remove="Assets\tiles.png" />
     <None Remove="Assets\windowicon.png" />
     <None Remove="Assets\World.ldtk" />
@@ -33,7 +97,199 @@
     <Content Include="Assets\monsters.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\music\battle.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\music\regular.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\rogues.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\01_chest_open_1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\01_chest_open_2.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\01_chest_open_3.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\01_chest_open_4.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\02_chest_close_1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\02_chest_close_2.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\02_chest_close_3.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\03_crate_open_1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\03_crate_open_2.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\03_crate_open_3.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\04_sack_open_1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\04_sack_open_2.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\04_sack_open_3.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\05_door_open_1.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\05_door_open_2.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\06_door_close_1.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\06_door_close_2.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\07_human_atk_sword_1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\07_human_atk_sword_2.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\07_human_atk_sword_3.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\08_human_charge_1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\08_human_charge_2.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\09_human_charging_1_loop.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\09_human_charging_2_loop.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\10_human_special_atk_1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\10_human_special_atk_2.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\11_human_damage_1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\11_human_damage_2.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\11_human_damage_3.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\12_human_jump_1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\12_human_jump_2.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\12_human_jump_3.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\13_human_jump_land_1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\13_human_jump_land_2.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\14_human_death_spin.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\15_human_dash_1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\15_human_dash_2.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\16_human_walk_stone_1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\16_human_walk_stone_2.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\16_human_walk_stone_3.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\17_orc_atk_sword_1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\17_orc_atk_sword_2.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\17_orc_atk_sword_3.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\18_orc_charge.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\19_orc_charging_loop.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\20_orc_special_atk.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\21_orc_damage_1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\21_orc_damage_2.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\21_orc_damage_3.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\22_orc_jump_1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\22_orc_jump_2.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\23_orc_jump_land.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\24_orc_death_spin.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\25_orc_walk_stone_1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\25_orc_walk_stone_2.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\25_orc_walk_stone_3.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\26_sword_hit_1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\26_sword_hit_2.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\26_sword_hit_3.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\27_sword_miss_1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\27_sword_miss_2.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\sound\27_sword_miss_3.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\tiles.png">
