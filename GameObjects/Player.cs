@@ -58,11 +58,11 @@ public class Player : GameObject
             int newDepth = _world.ChangeLevel(Position, currentDepth);
             if (newDepth != currentDepth)
             {
-                targetPosition = Position;
+                // Update the current depth for the player and confirm movement
                 currentDepth = newDepth;
                 Raylib.PlaySound(_stairs);
+                // Movement is instantaneous for stairs, so simply signal the move is complete
                 OnPlayerMoved?.Invoke();
-
             }
         }
         // Otherwise allow movement
@@ -81,10 +81,13 @@ public class Player : GameObject
                 // Let the game know that we have processed the input - this will cause update to run
                 OnInputProcessed?.Invoke();
                 // This will move the player to their new position over xx seconds with 0 delay
-                _movementTween.Tween(this, new { X = targetPosition.X, Y = targetPosition.Y }, 0.15f, 0)
-                    .Ease(Ease.CubeInOut)
-                    // On completion we need to confirm to the game that the player has moved
-                    .OnComplete(() => { OnPlayerMoved?.Invoke(); });
+                if (_movementTween != null)
+                {
+                    _movementTween.Tween(this, new { X = targetPosition.X, Y = targetPosition.Y }, 0.15f, 0)
+                        .Ease(Ease.CubeInOut)
+                        // On completion we need to confirm to the game that the player has moved
+                        .OnComplete(() => { OnPlayerMoved?.Invoke(); });
+                }
                 // On attacking - add a repeat(1) and reflect() call to the above
             }
         }
