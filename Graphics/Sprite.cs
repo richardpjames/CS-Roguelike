@@ -16,7 +16,7 @@ public class Sprite
     public void Draw(Vector2 position)
     {
         // Draw the texture at the requested position and adjust the center position based on the draw rectangle
-        Raylib.DrawTextureRec(_texture, _drawRectangle, new Vector2(position.X, position.Y).WorldToPixel(), Color.White);
+        Raylib.DrawTextureRec(_texture, _drawRectangle, new Vector2(position.X, position.Y).GridToWorld(), Color.White);
     }
 }
 
