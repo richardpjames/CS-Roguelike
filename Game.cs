@@ -26,6 +26,8 @@ public class Game
         // Create a window which is the resolution of the monitor
         int monitor = Raylib.GetCurrentMonitor();
         Raylib.InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "RogueLike Adventure");
+        // Set the window icon
+        Raylib.SetWindowIcon(Raylib.LoadImage("Assets/windowicon.png"));
         //Raylib.InitWindow(Raylib.GetMonitorWidth(monitor), Raylib.GetMonitorHeight(monitor), "RogueLike Adventure");
         // Set to full screen
         //Raylib.ToggleBorderlessWindowed();
@@ -38,6 +40,7 @@ public class Game
         _player = new Player(new Vector2(6, 7), playerSprite, _world);
         // Initialise the camera - sets the offset to center the screen, pointing at zero,zero, with no rotation but zoomed
         _camera = new Camera2D(new Vector2((Raylib.GetScreenWidth() / 2), (Raylib.GetScreenHeight() / 2)), new Vector2(0, 0), 0, 3);
+
     }
     // On destruction we clean up the window etc.
     ~Game()
